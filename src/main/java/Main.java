@@ -1,6 +1,10 @@
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import java.sql.Connection;
@@ -21,11 +25,13 @@ public class Main {
 
     get("/hello", (req, res) -> "Hello World");
 
-    get("/", (request, response) -> {
-        Map<String, Object> attributes = new HashMap<>();
-        attributes.put("message", "Hello World!");
+    get("/import", new Import(), new FreeMarkerEngine());
 
-        return new ModelAndView(attributes, "index.ftl");
+    get("/", (request, response) -> {
+      Map<String, Object> attributes = new HashMap<>();
+      attributes.put("message", "Hello World!");
+
+      return new ModelAndView(attributes, "index.ftl");
     }, new FreeMarkerEngine());
 
     HikariConfig config = new  HikariConfig();
@@ -55,5 +61,4 @@ public class Main {
     }, new FreeMarkerEngine());
 
   }
-
 }
