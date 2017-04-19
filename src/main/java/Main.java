@@ -23,6 +23,7 @@ public class Main {
 
     get("/import", new Import(), new FreeMarkerEngine());
     get("/sq/callback", new SQCallBack(), new FreeMarkerEngine());
+    get("/ls/callback", new LSCallback(), new FreeMarkerEngine());
 
     get("/", (request, response) -> {
       Map<String, Object> attributes = new HashMap<>();
