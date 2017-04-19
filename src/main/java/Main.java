@@ -1,10 +1,6 @@
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import spark.ModelAndView;
-import spark.Request;
-import spark.Response;
-import spark.Route;
-import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import java.sql.Connection;
@@ -26,6 +22,7 @@ public class Main {
     get("/hello", (req, res) -> "Hello World");
 
     get("/import", new Import(), new FreeMarkerEngine());
+    get("/sq/callback", new SQCallBack(), new FreeMarkerEngine());
 
     get("/", (request, response) -> {
       Map<String, Object> attributes = new HashMap<>();

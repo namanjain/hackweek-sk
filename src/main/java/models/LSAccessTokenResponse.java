@@ -2,7 +2,7 @@ package models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AccessTokenResponse {
+public class LSAccessTokenResponse {
 
   @JsonProperty("access_token")
   public String accessToken;
@@ -15,5 +15,5 @@ public class AccessTokenResponse {
   @JsonProperty("refresh_token")
   public String refreshToken;
 
-  public AccessTokenResponse() {}
+  public LSAccessTokenResponse() {}
 }
