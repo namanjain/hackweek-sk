@@ -17,7 +17,7 @@ public class SQCallBack implements TemplateViewRoute {
   private String accessTokenEndpoint = "https://connect.squareup.com/oauth2/token";
   private String baseURL = "https://connect.squareup.com";
   private String clientId = "sq0idp-Ux0S-9iMftQuozTkDpSjDw";
-  private String clientSecret = "b113dd1e-244b-11e7-93ae-92361f002671";
+  private String clientSecret = "sq0csp-lBGGHNQmcQkAgLfa3x6W7jJj8SQ-Fx5Y0yQiCrUWM40";
 
   @Override public ModelAndView handle(Request request, Response response) {
     String temporaryCode = request.queryParams("code");
