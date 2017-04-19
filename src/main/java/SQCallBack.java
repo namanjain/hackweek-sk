@@ -6,6 +6,7 @@ import com.sun.jersey.api.client.WebResource;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import models.SQAccessTokenResponse;
 import spark.ModelAndView;
@@ -38,13 +39,10 @@ public class SQCallBack implements TemplateViewRoute {
   }
 
   private String getAccessToken(String temporaryCode) throws IOException {
+
     Client client = Client.create();
 
-    WebResource webResource = client
-        .resource(accessTokenEndpoint)
-        .queryParam("client_id", clientId)
-        .queryParam("client_secret", clientSecret)
-        .queryParam("code", temporaryCode);
+    WebResource webResource = client.resource(accessTokenEndpoint);
 
     JsonObject request = new JsonObject();
     request.addProperty("client_id", clientId);
@@ -52,8 +50,10 @@ public class SQCallBack implements TemplateViewRoute {
     request.addProperty("code", temporaryCode);
 
     ClientResponse response = webResource
+        .header(HttpHeaders.AUTHORIZATION, "Client " + clientSecret)
         .type(MediaType.APPLICATION_JSON)
-        .get(ClientResponse.class);
+        .accept(MediaType.APPLICATION_JSON)
+        .post(ClientResponse.class, request.toString());
 
     if (response.getStatus() != 200) {
       throw new RuntimeException("Failed : HTTP error code : " + response.getStatus() + response.toString());

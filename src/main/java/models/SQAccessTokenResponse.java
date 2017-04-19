@@ -7,7 +7,7 @@ public class SQAccessTokenResponse {
   @JsonProperty("access_token")
   public String accessToken;
   @JsonProperty("expires_at")
-  public Integer expiresAt;
+  public String expiresAt;
   @JsonProperty("token_type")
   public String tokenType;
   @JsonProperty("merchant_id")
